@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro - Lixo Eletrônico</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background: linear-gradient(135deg, #28a745, #218838);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .card {
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 450px;
+      padding: 2rem;
+      background-color: #fff;
+    }
+    .card h2 {
+      margin-bottom: 1.5rem;
+      color: #28a745;
+      font-weight: 700;
+    }
+    .btn-success {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+    .btn-success:hover {
+      background-color: #218838;
+      border-color: #1e7e34;
+    }
+    .form-control:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+    }
+    .text-center a {
+      color: #28a745;
+      text-decoration: none;
+    }
+    .text-center a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 class="text-center">Cadastro</h2>
+    <form method="post" action="{% url 'cadastro' %}">
+      {% csrf_token %}
+      {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+        Corrija os erros abaixo.
+      </div>
+      {% endif %}
+
+      <div class="form-group">
+        <label for="id_username">Usuário</label>
+        <input
+          type="text"
+          name="username"
+          required
+          class="form-control"
+          id="id_username"
+          placeholder="Digite um nome de usuário"
+          value="{{ form.username.value|default_if_none:'' }}"
+        />
+        {% if form.username.errors %}
+          <small class="text-danger">{{ form.username.errors.0 }}</small>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="id_email">Email</label>
+        <input
+          type="email"
+          name="email"
+          required
+          class="form-control"
+          id="id_email"
+          placeholder="Digite seu email"
+          value="{{ form.email.value|default_if_none:'' }}"
+        />
+        {% if form.email.errors %}
+          <small class="text-danger">{{ form.email.errors.0 }}</small>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="id_password1">Senha</label>
+        <input
+          type="password"
+          name="password1"
+          required
+          class="form-control"
+          id="id_password1"
+          placeholder="Digite uma senha"
+        />
+        {% if form.password1.errors %}
+          <small class="text-danger">{{ form.password1.errors.0 }}</small>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="id_password2">Confirme a Senha</label>
+        <input
+          type="password"
+          name="password2"
+          required
+          class="form-control"
+          id="id_password2"
+          placeholder="Confirme sua senha"
+        />
+        {% if form.password2.errors %}
+          <small class="text-danger">{{ form.password2.errors.0 }}</small>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+    </form>
+
+    <p class="text-center mt-3">
+      Já tem uma conta?
+      <a href="{% url 'login' %}">Faça login aqui</a>
+    </p>
+  </div>
+</body>
+</html>

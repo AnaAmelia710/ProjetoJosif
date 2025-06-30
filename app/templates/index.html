@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> ----- - Descarte Consciente de Lixo Eletrônico</title>
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <a class="navbar-brand" href="/">Lixo Eletrônico</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/">Início</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/pessoas/">Pessoas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/pontos_coleta/">Pontos de Coleta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/tipos_residuos/">Tipos de Resíduos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/campanhas/">Campanhas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/participacoes/">Participações</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/historico/">Histórico</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/admin/">Administração</a>
+            </li>
+          </ul>
+      
+          <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="nav-link btn btn-link text-light" style="padding: 0; border: none; background: none;">
+                    Sair
+                  </button>
+                </form>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'login' %}">Entrar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'cadastro' %}">Cadastrar</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+      
+
+  <div class="container mt-5">
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Bem-vindo à ------</h1>
+      <p class="lead">Seu portal para descarte consciente de lixo eletrônico</p>
+      <p>Junte-se a nós para proteger o meio ambiente e a saúde da nossa comunidade!</p>
+      <hr class="my-4" />
+      <p>
+        Explore nossos pontos de coleta, conheça os tipos de resíduos e participe das campanhas de reciclagem.
+      </p>
+      <a class="btn btn-success btn-lg" href="/pontos_coleta/" role="button">Encontre um Ponto de Coleta</a>
+    </div>
+  </div>
+
+  <!-- jQuery e Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  ></script>
+</body>
+</html>
