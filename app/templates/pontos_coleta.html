@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pontos de Coleta - EcoTech</title>
+  <style>
+    /* RESET E BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: #2e7d32;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+    }
+
+    .navbar-brand {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: white;
+    }
+
+    .navbar-menu {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .navbar-menu a {
+      color: white;
+      padding: 8px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .navbar-menu a:hover {
+      background-color: #1b5e20;
+    }
+
+    .navbar-toggler {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* HEADER */
+    .header {
+      background-color: #2e7d32;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 0 0 8px 8px;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 1.1em;
+    }
+
+    /* CONTAINER PRINCIPAL */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* BLOCO DE INFORMAÇÃO */
+    .info-box {
+      background-color: #e0e0e0;
+      padding: 20px;
+      border-left: 6px solid #2e7d32;
+      border-radius: 6px;
+      margin-bottom: 30px;
+    }
+
+    .info-box h2 {
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+
+    /* CARDS DE PONTOS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 6px solid #4caf50;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin-bottom: 6px;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
+      .navbar-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #2e7d32;
+        padding: 10px 0;
+      }
+
+      .navbar-menu.active {
+        display: flex;
+      }
+
+      .navbar-toggler {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 1.8em;
+      }
+
+      .info-box h2 {
+        font-size: 1.4em;
+      }
+
+      .card h3 {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">EcoTech</a>
+    <button class="navbar-toggler" onclick="toggleMenu()">☰</button>
+    <div class="navbar-menu" id="navbarMenu">
+      <a href="/">Início</a>
+      <a href="/pessoas/">Pessoas</a>
+      <a href="/pontos_coleta/">Pontos de Coleta</a>
+      <a href="/tipos_residuos/">Tipos de Resíduos</a>
+      <a href="/campanhas/">Campanhas</a>
+      <a href="/participacoes/">Participações</a>
+      <a href="/historico/">Histórico</a>
+      <a href="/admin/">Administração</a>
+    </div>
+  </nav>
+
+  <header class="header">
+    <h1>Pontos de Coleta</h1>
+    <p>Encontre ecopontos próximos e contribua para o descarte consciente de resíduos eletrônicos no sudoeste de Minas Gerais.</p>
+  </header>
+
+  <main class="container">
+
+    <section class="info-box">
+      <h2>Sobre a iniciativa</h2>
+      <p>
+        Este projeto visa facilitar o acesso da população a locais seguros para o descarte de lixo eletrônico. Os ecopontos listados aqui fazem parte de uma rede que incentiva a reciclagem e protege o meio ambiente.
+      </p>
+    </section>
+
+    <section class="cards">
+      <!-- Ponto de coleta 1 -->
+      <div class="card">
+        <h3>Ecoponto Central - Muzambinho</h3>
+        <p><strong>Endereço:</strong> Rua Verde, 123 - Centro</p>
+        <p><strong>Resíduos aceitos:</strong> Pilhas, baterias, celulares, cabos</p>
+      </div>
+
+      <!-- Ponto de coleta 2 -->
+      <div class="card">
+        <h3>Associação Reciclar - Guaxupé</h3>
+        <p><strong>Endereço:</strong> Av. Sustentável, 45 - Bairro das Águas</p>
+        <p><strong>Resíduos aceitos:</strong> Computadores, eletrodomésticos, periféricos</p>
+      </div>
+
+      <!-- Ponto de coleta 3 -->
+      <div class="card">
+        <h3>IFSuldeMinas - Campus Muzambinho</h3>
+        <p><strong>Endereço:</strong> Rodovia MG-446, km 35</p>
+        <p><strong>Resíduos aceitos:</strong> Equipamentos eletrônicos diversos (alunos e comunidade)</p>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("navbarMenu");
+      menu.classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

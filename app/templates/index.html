@@ -1,94 +1,547 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> ----- - Descarte Consciente de Lixo Eletrônico</title>
-  <!-- Bootstrap CSS -->
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSudoeste</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333333;
+    background-color: #ffffff;
+}
+
+/* Header e Navegação */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #2e7d32;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 5%;
+    gap: 3rem; /* Espaço entre logo e ul */
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-right: 2rem;
+}
+
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin-top: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+nav ul li a:hover {
+    color: #e8f5e8;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Seção Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 5%;
+    margin-top: 80px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 3rem;
+}
+
+.hero-content {
+    flex: 1;
+    animation: fadeInLeft 1s ease-out;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    color: #2e7d32;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.hero-content button {
+    background-color: #2e7d32;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+}
+
+.hero-content button:hover {
+    background-color: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+}
+
+.hero-image {
+    flex: 1;
+    animation: fadeInRight 1s ease-out;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Seções gerais */
+.section {
+    padding: 5rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    color: #2e7d32;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.section p {
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    color: #333333;
+}
+
+.section ul {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section ul li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.section ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+/* Seção de funcionalidades */
+#funcionalidades ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+}
+
+#funcionalidades ul li {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #2e7d32;
+}
+
+#funcionalidades ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Seção de valores */
+#valores ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#valores ul li {
+    background-color: #2e7d32;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#valores ul li:hover {
+    background-color: #1b5e20;
+    transform: scale(1.05);
+}
+
+/* Seção de ecopontos */
+.map-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.map-container iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 3rem 5%;
+}
+
+footer p {
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    margin: 2rem 0;
+}
+
+.social-icons span {
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #2e7d32;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons span:hover {
+    background-color: #1b5e20;
+}
+
+/* Botão voltar ao topo */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2e7d32;
+    color: #ffffff;
+    border: none;
+    padding: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#back-to-top:hover {
+    background-color: #1b5e20;
+    transform: translateY(-2px);
+}
+
+/* Animações */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    nav ul {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 120px;
+        gap: 2rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .section {
+        padding: 3rem 5%;
+    }
+    
+    .section h2 {
+        font-size: 2rem;
+    }
+    
+    #funcionalidades ul {
+        grid-template-columns: 1fr;
+    }
+    
+    #valores ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .map-container iframe {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .section h2 {
+        font-size: 1.5rem;
+    }
+    
+    nav ul {
+        gap: 0.5rem;
+    }
+    
+    nav ul li a {
+        font-size: 0.9rem;
+    }
+}
+.imagem-fundo {
+    position: fixed; /* para manter no fundo mesmo com rolagem */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('https://img.freepik.com/fotos-premium/conceito-de-reciclagem-planeta-terra-com-setas-verdes-e-folhas-na-ilustracao-de-fundo-desfocado_495423-47235.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25; /* controle da escuridão */
+    z-index: -1;
+    filter: brightness(80%);
+}
+.btn1, .btn2 {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: -20px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Entrar - estilo transparente com borda branca */
+.btn1 {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.btn1:hover {
+    background-color: #ffffff;
+    color: #2e7d32;
+}
+
+/* Cadastrar - fundo verde */
+.btn2 {
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #4CAF50;
+}
+
+.btn2:hover {
+    background-color: white;
+    color: #4CAF50;
+}
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <a class="navbar-brand" href="/">Lixo Eletrônico</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/">Início</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/pessoas/">Pessoas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/pontos_coleta/">Pontos de Coleta</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/tipos_residuos/">Tipos de Resíduos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/campanhas/">Campanhas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/participacoes/">Participações</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/historico/">Histórico</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/admin/">Administração</a>
-            </li>
-          </ul>
-      
-          <ul class="navbar-nav">
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: inline;">
-                  {% csrf_token %}
-                  <button type="submit" class="nav-link btn btn-link text-light" style="padding: 0; border: none; background: none;">
-                    Sair
-                  </button>
-                </form>
-              </li>
-            {% else %}
-              <li class="nav-item">
-                <a class="nav-link text-light" href="{% url 'login' %}">Entrar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="{% url 'cadastro' %}">Cadastrar</a>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
-      </nav>
-      
-
-  <div class="container mt-5">
-    <div class="jumbotron text-center">
-      <h1 class="display-4">Bem-vindo à ------</h1>
-      <p class="lead">Seu portal para descarte consciente de lixo eletrônico</p>
-      <p>Junte-se a nós para proteger o meio ambiente e a saúde da nossa comunidade!</p>
-      <hr class="my-4" />
-      <p>
-        Explore nossos pontos de coleta, conheça os tipos de resíduos e participe das campanhas de reciclagem.
-      </p>
-      <a class="btn btn-success btn-lg" href="/pontos_coleta/" role="button">Encontre um Ponto de Coleta</a>
-    </div>
+  <div class="imagem-fundo">
+    <img src="" alt="img-fundo">
   </div>
 
-  <!-- jQuery e Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
-  ></script>
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-  ></script>
+    <header>
+        <nav>
+            <div class="logo">EcoSudoeste</div>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre-nos">Sobre</a></li>
+                <li><a href="#missao">Missão</a></li>
+                <li><a href="#visao">Visão</a></li>
+                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#ecopontos">Ecopontos</a></li>
+                <li><a href="#contato">Contato</a></li>
+               <li><a class="btn1" href="{% url 'login' %}">Entrar</a></li>
+                <li><a class="btn2" href="{% url 'cadastro' %}">Cadastrar</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Conectando tecnologia e meio ambiente para um futuro sustentável.</h1>
+            <button>Saiba mais</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://files.manuscdn.com/search-media/2025/07/14/Sco72MGqavbpMknQLjvbWb.jpg" alt="Lixo eletrônico e reciclagem">
+        </div>
+    </section>
+
+    <section id="sobre-nos" class="section">
+        <h2>Sobre Nós</h2>
+        <p>O projeto EcoSudoeste nasceu com o objetivo de incentivar a população da região sudoeste de Minas Gerais a descartar corretamente seus resíduos eletrônicos. Utilizando uma plataforma web acessível e educativa, buscamos impactar positivamente o meio ambiente e a saúde pública.</p>
+    </section>
+
+    <section id="missao" class="section">
+        <h2>Missão</h2>
+        <p>Promover a conscientização ambiental por meio da tecnologia, incentivando o descarte correto de lixo eletrônico.</p>
+    </section>
+
+    <section id="visao" class="section">
+        <h2>Visão</h2>
+        <p>Ser referência regional na educação ambiental digital e no apoio à logística reversa de e-lixo.</p>
+    </section>
+
+    <section id="valores" class="section">
+        <h2>Valores</h2>
+        <ul>
+            <li>Sustentabilidade</li>
+            <li>Inovação</li>
+            <li>Acessibilidade</li>
+            <li>Educação</li>
+            <li>Responsabilidade Social</li>
+        </ul>
+    </section>
+
+    <section id="funcionalidades" class="section">
+        <h2>Funcionalidades do Sistema</h2>
+        <ul>
+            <li>Mapa interativo com ecopontos</li>
+            <li>Cadastro de campanhas por gestores e professores</li>
+            <li>Leitura de conteúdos educativos</li>
+            <li>Sugestão de novos pontos de coleta</li>
+            <li>Histórico de descarte do usuário</li>
+        </ul>
+    </section>
+
+    <section id="ecopontos" class="section">
+        <h2>Ecopontos</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3711.9097000000003!2d-46.52989999999999!3d-21.3789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b63a2b1b2b2b2b%3A0x1b2b2b2b2b2b2b2b!2sMuzambinho%2C%20MG!5e0!3m2!1spt-BR!2sbr!4v1678901234567!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <p>Espaço reservado para listar ecopontos cadastrados futuramente.</p>
+    </section>
+
+    <footer id="contato">
+        <p>Contato: ecosudoeste@if.edu.br</p>
+        <div class="social-icons">
+            <!-- Ícones de redes sociais fictícios -->
+            <span>Facebook</span>
+            <span>Instagram</span>
+            <span>Twitter</span>
+        </div>
+        <p>Desenvolvido por [Seu Nome] para a JOSIF – IFSULDEMINAS – 2025</p>
+    </footer>
+
+    <button id="back-to-top">Voltar ao topo</button>
+
+    <script src="script.js"></script>
 </body>
 </html>

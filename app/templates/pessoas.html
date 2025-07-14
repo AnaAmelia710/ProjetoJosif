@@ -2,17 +2,50 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Lista de Pessoas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pessoas - EcoTech</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #2e7d32;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .pessoa-box {
+      max-width: 900px;
+      background: white;
+      padding: 25px;
+      margin: 0 auto;
+      border-left: 6px solid #2e7d32;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .pessoa-box p {
+      font-size: 1em;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
-  <h1>Pessoas Cadastradas</h1>
-  <ul>
-    {% for pessoa in pessoas %}
-      <li>{{ pessoa.nome }} - {{ pessoa.email }}</li>
-    {% empty %}
-      <li>Nenhuma pessoa cadastrada.</li>
-    {% endfor %}
-  </ul>
-  <a href="/">Voltar para a página inicial</a>
+
+  <h1>Participação da Comunidade</h1>
+
+  <div class="pessoa-box">
+    <p>
+      A população tem papel essencial na preservação ambiental. Este projeto incentiva o engajamento direto por meio da entrega correta de resíduos, participação em campanhas e disseminação de boas práticas.
+    </p>
+    <p>
+      Cada cidadão consciente contribui para um futuro mais sustentável!
+    </p>
+  </div>
+
 </body>
 </html>
