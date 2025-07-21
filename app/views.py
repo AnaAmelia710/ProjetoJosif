@@ -4,6 +4,7 @@ from .models import Pessoa, PontoColeta, TipoResiduo, CampanhaColeta, Participac
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 #requerimento login
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 def pagina_inicial(request):
@@ -54,3 +55,6 @@ def cadastro(request):
 def lista_pessoas(request):
     pessoas = Pessoa.objects.all()
     return render(request, 'pessoas.html', {'pessoas': pessoas})
+@login_required
+def perfil(request):
+    return render(request, 'perfil.html')

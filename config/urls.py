@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
+from app import views
 from app.views import (pagina_inicial,lista_pessoas,lista_pontos_coleta,lista_tipos_residuos,lista_campanhas,lista_participacoes,lista_historico, cadastro,
 )
 urlpatterns = [
@@ -16,6 +17,6 @@ urlpatterns = [
 ]
 urlpatterns += [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='pagina_inicial'), name='logout'),
     path('cadastro/', cadastro, name='cadastro'),
 ]

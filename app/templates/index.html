@@ -456,24 +456,78 @@ footer p {
     <img src="" alt="img-fundo">
   </div>
 
-    <header>
-        <nav>
-            <div class="logo">EcoSudoeste</div>
-            <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre-nos">Sobre</a></li>
-                <li><a href="#missao">Missão</a></li>
-                <li><a href="#visao">Visão</a></li>
-                <li><a href="#funcionalidades">Funcionalidades</a></li>
-                <li><a href="#ecopontos">Ecopontos</a></li>
-                <li><a href="#contato">Contato</a></li>
-               <li><a class="btn1" href="{% url 'login' %}">Entrar</a></li>
-                <li><a class="btn2" href="{% url 'cadastro' %}">Cadastrar</a></li>
-
-            </ul>
-        </nav>
-    </header>
-
+  <header>
+    <nav>
+      <div class="logo">EcoSudoeste</div>
+      <ul>
+        <li><a href="{% url 'pagina_inicial' %}">Início</a></li>
+        <li><a href="#sobre-nos">Sobre</a></li>
+        <li><a href="#missao">Missão</a></li>
+        <li><a href="#visao">Visão</a></li>
+        <li><a href="#funcionalidades">Funcionalidades</a></li>
+        <li><a href="#ecopontos">Ecopontos</a></li>
+        <li><a href="#contato">Contato</a></li>
+  
+        {% if user.is_authenticated %}
+          <li>
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" style="
+              background-color: #2e7d32;
+              border: 2px solid white;
+              border-radius: 8px;
+              color: white;
+              cursor: pointer;
+              padding: 6px 12px;
+              font-size: 1rem;
+              transition: background-color 0.3s ease;
+          " onmouseover="this.style.backgroundColor='#1b5e20'" onmouseout="this.style.backgroundColor='#2e7d32'">
+            Sair
+          </button>
+            </form>
+          </li>
+        {% else %}
+        <li>
+            <a href="{% url 'login' %}" style="
+                background-color: white;
+                color: #2e7d32;
+                border: 2px solid #2e7d32;
+                border-radius: 8px;
+                padding: 6px 12px;
+                text-decoration: none;
+                font-weight: 600;
+                display: inline-block;
+                transition: background-color 0.3s ease, color 0.3s ease;
+            " 
+            onmouseover="this.style.backgroundColor='#2e7d32'; this.style.color='white';" 
+            onmouseout="this.style.backgroundColor='white'; this.style.color='#2e7d32';"
+            >
+              Entrar
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'cadastro' %}" style="
+                background-color: #2e7d32;
+                color: white;
+                border: 2px solid white;
+                border-radius: 8px;
+                padding: 6px 12px;
+                text-decoration: none;
+                font-weight: 600;
+                display: inline-block;
+                transition: background-color 0.3s ease;
+            "
+            onmouseover="this.style.backgroundColor='#1b5e20';" 
+            onmouseout="this.style.backgroundColor='#2e7d32';"
+            >
+              Cadastrar
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+  
     <section id="inicio" class="hero">
         <div class="hero-content">
             <h1>Conectando tecnologia e meio ambiente para um futuro sustentável.</h1>
@@ -484,22 +538,22 @@ footer p {
         </div>
     </section>
 
-    <section id="sobre-nos" class="section">
+    <section id="sobre-nos"class="section visible">
         <h2>Sobre Nós</h2>
         <p>O projeto EcoSudoeste nasceu com o objetivo de incentivar a população da região sudoeste de Minas Gerais a descartar corretamente seus resíduos eletrônicos. Utilizando uma plataforma web acessível e educativa, buscamos impactar positivamente o meio ambiente e a saúde pública.</p>
     </section>
 
-    <section id="missao" class="section">
+    <section id="missao"class="section visible">
         <h2>Missão</h2>
         <p>Promover a conscientização ambiental por meio da tecnologia, incentivando o descarte correto de lixo eletrônico.</p>
     </section>
 
-    <section id="visao" class="section">
+    <section id="visao" class="section visible">
         <h2>Visão</h2>
         <p>Ser referência regional na educação ambiental digital e no apoio à logística reversa de e-lixo.</p>
     </section>
 
-    <section id="valores" class="section">
+    <section id="valores" class="section visible">
         <h2>Valores</h2>
         <ul>
             <li>Sustentabilidade</li>
@@ -510,7 +564,7 @@ footer p {
         </ul>
     </section>
 
-    <section id="funcionalidades" class="section">
+    <section id="funcionalidades" class="section visible">
         <h2>Funcionalidades do Sistema</h2>
         <ul>
             <li>Mapa interativo com ecopontos</li>
@@ -521,14 +575,14 @@ footer p {
         </ul>
     </section>
 
-    <section id="ecopontos" class="section">
+    <section id="ecopontos" class="section visible">
         <h2>Ecopontos</h2>
         <div class="map-container">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3711.9097000000003!2d-46.52989999999999!3d-21.3789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b63a2b1b2b2b2b%3A0x1b2b2b2b2b2b2b2b!2sMuzambinho%2C%20MG!5e0!3m2!1spt-BR!2sbr!4v1678901234567!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
         <p>Espaço reservado para listar ecopontos cadastrados futuramente.</p>
     </section>
-
+      
     <footer id="contato">
         <p>Contato: ecosudoeste@if.edu.br</p>
         <div class="social-icons">
