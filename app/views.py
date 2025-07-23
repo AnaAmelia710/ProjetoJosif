@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Pessoa, PontoColeta, TipoResiduo, CampanhaColeta, ParticipacaoCampanha, HistoricoDescartes
+from .models import Pessoa, PontoColeta, TipoResiduo, CampanhaColeta, ParticipacaoCampanha
 #cadastro
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
@@ -8,7 +8,20 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 def pagina_inicial(request):
-    return render(request, 'index.html')
+    campanhas = CampanhaColeta.objects.all().order_by('-data_inicio')[:5]
+    pontos = PontoColeta.objects.all()
+    
+    participacoes = None
+    if request.user.is_authenticated:
+        participacoes = ParticipacaoCampanha.objects.filter(pessoa__email=request.user.email)
+
+    contexto = {
+        'campanhas': campanhas,
+        'pontos': pontos,
+        'participacoes': participacoes
+    }
+
+    return render(request, 'index.html', contexto)
 
 def lista_pessoas(request):
     pessoas = Pessoa.objects.all()
@@ -33,10 +46,6 @@ def lista_campanhas(request):
 def lista_participacoes(request):
     participacoes = ParticipacaoCampanha.objects.all()
     return render(request, 'participacoes.html', {'participacoes': participacoes})
-
-def lista_historico(request):
-    historicos = HistoricoDescartes.objects.all()
-    return render(request, 'historico.html', {'historicos': historicos})
 
 
 def cadastro(request):

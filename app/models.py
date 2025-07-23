@@ -10,10 +10,9 @@ class Cidade(models.Model):
     class Meta:
         verbose_name = "Cidade"
 
+
 class Ocupacao(models.Model):
     nome = models.CharField(max_length=100, verbose_name="Nome da ocupação")
-    telefone = models.CharField(max_length=20, verbose_name="Telefone")
-    email = models.EmailField(verbose_name="Email")
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE, verbose_name="Cidade")
     disponibilidade = models.CharField(max_length=100, verbose_name="Disponibilidade")
 
@@ -22,6 +21,7 @@ class Ocupacao(models.Model):
 
     class Meta:
         verbose_name = "Ocupacao"
+
 
 class Pessoa(models.Model):
     nome = models.CharField(max_length=100, verbose_name="Nome")
@@ -38,6 +38,7 @@ class Pessoa(models.Model):
     class Meta:
         verbose_name = "Pessoa"
 
+
 class TipoResiduo(models.Model):
     nome = models.CharField(max_length=100, verbose_name="Nome do resíduo")
     descricao = models.TextField(verbose_name="Descrição")
@@ -47,6 +48,7 @@ class TipoResiduo(models.Model):
 
     class Meta:
         verbose_name = "TipoResíduo"
+
 
 class PontoColeta(models.Model):
     nome = models.CharField(max_length=100, verbose_name="Nome do ponto")
@@ -60,6 +62,7 @@ class PontoColeta(models.Model):
 
     class Meta:
         verbose_name = "PontoColeta"
+
 
 class ResiduoDescartado(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name="Pessoa")
@@ -88,6 +91,7 @@ class CampanhaColeta(models.Model):
     class Meta:
         verbose_name = "CampanhaColeta"
 
+
 class ParticipacaoCampanha(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name="Pessoa")
     campanha = models.ForeignKey(CampanhaColeta, on_delete=models.CASCADE, verbose_name="Campanha")
@@ -98,17 +102,3 @@ class ParticipacaoCampanha(models.Model):
 
     class Meta:
         verbose_name = "ParticipacaoCampanha"
-
-
-class HistoricoDescartes(models.Model):
-    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name="Pessoa")
-    residuo_descartado = models.ForeignKey(ResiduoDescartado, on_delete=models.CASCADE, verbose_name="Resíduo Descartado")
-    data_registro = models.DateField(verbose_name="Data de Registro")
-    quantidade = models.IntegerField(verbose_name="Quantidade")
-
-    def __str__(self):
-        return f"{self.pessoa} - {self.residuo_descartado} ({self.quantidade})"
-
-    class Meta:
-        verbose_name = "HistóricoDescarte"
-

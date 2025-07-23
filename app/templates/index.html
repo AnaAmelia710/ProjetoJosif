@@ -574,7 +574,51 @@ footer p {
             <li>Histórico de descarte do usuário</li>
         </ul>
     </section>
+    <section class="section visible">
+    <h2>Campanhas de Coleta Ativas</h2>
+{% if campanhas %}
+  <ul>
+    {% for campanha in campanhas %}
+      <li>
+        <strong>{{ campanha.nome }}</strong> – {{ campanha.descricao }} <br>
+        <em>{{ campanha.data_inicio }} até {{ campanha.data_fim }}</em> | Cidade: {{ campanha.cidade.nome }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Nenhuma campanha ativa no momento.</p>
+{% endif %}
 
+<hr>
+
+<h2>Pontos de Coleta</h2>
+{% if pontos %}
+  <ul>
+    {% for ponto in pontos %}
+      <li>
+        <strong>{{ ponto.nome }}</strong><br>
+        Endereço: {{ ponto.endereco }} – Cidade: {{ ponto.cidade.nome }} <br>
+        Telefone: {{ ponto.telefone }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Nenhum ponto de coleta cadastrado.</p>
+{% endif %}
+
+<hr>
+
+{% if participacoes %}
+  <h2>Minha Participação nas Campanhas</h2>
+  <ul>
+    {% for p in participacoes %}
+      <li>
+        Campanha: {{ p.campanha.nome }} – Resíduos descartados: {{ p.quantidade_residuos_descartados }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+</section>
     <section id="ecopontos" class="section visible">
         <h2>Ecopontos</h2>
         <div class="map-container">
@@ -591,7 +635,7 @@ footer p {
             <span>Instagram</span>
             <span>Twitter</span>
         </div>
-        <p>Desenvolvido por [Seu Nome] para a JOSIF – IFSULDEMINAS – 2025</p>
+        <p>Desenvolvido por Ana Amélia para a JOSIF – IFSULDEMINAS – 2025</p>
     </footer>
 
     <button id="back-to-top">Voltar ao topo</button>
